@@ -1,12 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Header from './components/Header';
+import Button from './components/Button';
+import Statistics from './components/Statistics';
+
+
+
+
+const App = () => {
+    //save clicks for each button to own state
+    const header = "give feedback";
+    const statisticsText = "statistics";
+
+    const [good, setGood] = useState(0);
+    const [neutral, setNeutral] = useState(0);
+    const [bad, setBad] = useState(0);
+
+    const handleClick = () => {
+        console.log('clicked')
+    }
+
+    const setToValueGood = (value) => {
+        return () => {
+            setGood(value)
+        }
+    }
+
+    const setToValueNeutral = (value) => {
+        return () => {
+            setNeutral(value)
+        }
+
+    }
+
+    const setToValueBad = (value) => {
+        return () => {
+            setBad(value)
+        }
+    }
+
+
+
+
+    return (
+        <div>
+            <Header text={header} />
+            <Button onClick={setToValueGood(good + 1)} text='good' />
+            <Button onClick={setToValueNeutral(neutral + 1)} text='neutral' />
+            <Button onClick={setToValueBad(bad + 1)} text='bad' />
+            <Statistics text={statisticsText} />
+
+            <p>good {good}</p>
+            <p>neutral {neutral}</p>
+            <p>bad {bad}</p>
+
+        </div>
+    )
+}
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
