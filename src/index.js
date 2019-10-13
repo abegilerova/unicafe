@@ -10,23 +10,28 @@ import Statistics from './components/Statistics';
 const App = () => {
     //save clicks for each button to own state
     const header = "give feedback";
-    const statisticsText = "statistics";
 
     const [good, setGood] = useState(0);
     const [neutral, setNeutral] = useState(0);
     const [bad, setBad] = useState(0);
 
+
+
+
     const handleClick = () => {
-        console.log('clicked')
+        console.log('clicked');
+
     }
 
     const setToValueGood = (value) => {
+
         return () => {
             setGood(value)
         }
     }
 
     const setToValueNeutral = (value) => {
+
         return () => {
             setNeutral(value)
         }
@@ -34,6 +39,7 @@ const App = () => {
     }
 
     const setToValueBad = (value) => {
+
         return () => {
             setBad(value)
         }
@@ -48,17 +54,14 @@ const App = () => {
             <Button onClick={setToValueGood(good + 1)} text='good' />
             <Button onClick={setToValueNeutral(neutral + 1)} text='neutral' />
             <Button onClick={setToValueBad(bad + 1)} text='bad' />
-            <Statistics text={statisticsText} />
 
-            <p>good {good}</p>
-            <p>neutral {neutral}</p>
-            <p>bad {bad}</p>
 
-            <Statistics text='all' number={good + neutral + bad} />
-            <Statistics text='average' number={(good + neutral + bad) / 3} />
-            < Statistics text='bad' number={(good + neutral + bad) / 100} />
+            <Statistics good={good} neutral={neutral} bad={bad} />
 
-        </div>
+
+
+
+        </div >
     )
 }
 
